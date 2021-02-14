@@ -25,7 +25,16 @@
   <body>
     <div class="dashboard-container">
       <div class="sidebar"></div>
-      <div class="top"></div>
+      <div class="top">
+        Zobacz prognozę pogody dla: 
+          <select id="category" >
+            <option value="none" selected disabled></option>
+            <option value="krakow">Kraków</option>
+            <option value="wroclaw">Wrocław</option>
+            <option value="warszawa">Warszawa</option>
+             
+        </select>
+      </div>
       <div class="content">
          <div class="news-section">
           <div class="search">
@@ -33,7 +42,7 @@
           </div>
           <div class="news"></div>
         </div>
-        <div class="weather"></div>
+        <div class="weather">  </div>
       </div>
     </div>
 

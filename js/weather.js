@@ -1,5 +1,9 @@
-
 let city = "Kraków"
+const citySelect = document.querySelector("#category");
+ 
+const weather = document.querySelector(".weather")
+
+
 
 const getWeatherData = () => {
   const url = `http://api.openweathermap.org/data/2.5/forecast/daily?q=${city},pl&units=metric&appid=be45fea377f32d5e3f469489e86cdfc2`;
@@ -21,8 +25,6 @@ const getDateTime = (value) => {
   const date = dateTime.getDate();
   const month = dateTime.getMonth() + 1;
   const year = dateTime.getFullYear();
-
- 
 
   return `${date}.${month}.${year}`;
 };
@@ -76,4 +78,25 @@ const renderWeather = () => {
 };
 renderWeather();
 
+citySelect.addEventListener("change", (e) => {
+  city = e.target.value;
+  console.log(city);
+
+  switch (city) {
+    case "krakow":
+      city = "Kraków";
+      break;
+    case "wroclaw":
+      city = "Wrocław";
+      break;
+      case "warszawa":
+        city = "Warszawa";
+        break;
+  }
+
  
+   weather.innerHTML = ''
+ 
+
+  renderWeather();
+});
