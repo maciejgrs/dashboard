@@ -68,6 +68,22 @@ body {
         margin-bottom: 20px;
     }
 }
+.toggle {
+    width: 80px;
+    height: 80px;
+    background: url(https://i.postimg.cc/tZ5f2rfz/sun.png) no-repeat center;
+    background-size: 50%;
+    
+}
 
+
+.dark-toggle {
+    width: 80px;
+    height: 80px;
+    background: url(https://i.postimg.cc/347VjMLR/moon.png) no-repeat center;
+    background-size: 50%;
+    
+}
 
 @import './weather';
+@import './exchange';
