@@ -77,6 +77,14 @@ const getData = async () => {
   };
   
 
-  
+  const addPanel = document.querySelector(".add-description");
+const addButton = document.querySelector(".opis")
+const cancelButton = document.querySelector(".canceling")
+addButton.addEventListener("click", () => {
+  addPanel.style.display = "flex";
+});
+cancelButton.addEventListener("click", () => {
+  addPanel.style.display = "none";
+});
   init();
   
