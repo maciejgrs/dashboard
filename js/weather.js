@@ -49,7 +49,7 @@ const createWidget = (day) => {
 
   icon.setAttribute("src", `img/${titleValue.toLowerCase()}.png`);
   title.textContent = titleValue;
-  temp.textContent = Math.floor(tempValue);
+  temp.textContent = Math.floor(tempValue) + 'C'
   date.textContent = getDateTime(dateValue);
   town.textContent = `, ${city.charAt(0).toUpperCase() + city.slice(1)}`;
 

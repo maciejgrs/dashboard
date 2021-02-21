@@ -1,9 +1,10 @@
+ 
 let newTask;
 let idNumber = 0;
-
+let local;
 let editedTodo;
 let task;
-
+let newLocalTask;
 let completed;
 let completedArray = [];
 let intersections;
@@ -25,7 +26,7 @@ const addNewTask = () => {
   if (todoInput.value !== "") {
     newTask = document.createElement("li");
     newTask.innerText = todoInput.value;
-   
+    saveLocalTodos(todoInput.value);
     newTask.setAttribute("id", idNumber);
     ulList.appendChild(newTask);
     todoInput.value = "";
@@ -89,11 +90,11 @@ const changeTodo = () => {
   if (popupInput.value !== "") {
     editedTodo.firstChild.textContent = popupInput.value;
 
-  
+    newLocalTask = popupInput.value;
 
     popup.style.display = "none";
 
-   
+    changeLocalTodos();
     popupInput.innerText = "";
   } else {
     popupInfo.innerText = "Musisz podać jakąś treść!";
@@ -104,7 +105,7 @@ const deleteTask = (e) => {
   const todoTask = e.target.closest("li");
   todoTask.remove();
 
-
+  removeLocalTodos(todoTask);
 
   if (allTasks.length === 0) {
     alertInfo.innerText = "Brak zadań na liście.";
@@ -121,8 +122,81 @@ ulList.addEventListener("click", checkClick);
 addPopupBtn.addEventListener("click", changeTodo);
 closeTodoBtn.addEventListener("click", closePopup);
 
+function saveLocalTodos(todo) {
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
 
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+function removeLocalTodos(todoTask) {
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  if (localStorage.getItem("completed") === null) {
+    completedArray = [];
+  } else {
+    completedArray = JSON.parse(localStorage.getItem("completed"));
+  }
 
+  let x = todoTask.childNodes[0];
+  let y = todos.indexOf(x.data);
+
+  let z = completedArray.indexOf(x.data);
+
+  if (todoTask.classList.contains("completed")) {
+    completedArray.splice(z, 1);
+  }
+  // console.log(completedArray);
+  todos.splice(y, 1);
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+  localStorage.setItem("completed", JSON.stringify(completedArray));
+}
+
+function changeLocalTodos() {
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+
+  let y = todos.indexOf(task);
+
+  todos[y] = newLocalTask;
+
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+const saveCompletedTodos = (x) => {
+  if (localStorage.getItem("completed") === null) {
+    completedArray = [];
+  } else {
+    completedArray = JSON.parse(localStorage.getItem("completed"));
+  }
+
+  completedArray.push(x);
+  // console.log(completedArray);
+  intersections = todos.filter((e) => completedArray.indexOf(e) !== -1);
+
+  localStorage.setItem("completed", JSON.stringify(completedArray));
+};
+const removeCompletedTodos = (x) => {
+  if (localStorage.getItem("completed") === null) {
+    completedArray = [];
+  } else {
+    completedArray = JSON.parse(localStorage.getItem("completed"));
+  }
+  let y = completedArray.indexOf(x);
+  completedArray.splice(y, 1);
+  // console.log(completedArray);
+
+  localStorage.setItem("completed", JSON.stringify(completedArray));
+};
 
 function completeTask(e) {
   const completedTask = e.target.closest("li").id;
@@ -132,12 +206,50 @@ function completeTask(e) {
   if (completed.classList.contains("completed")) {
     completed.classList.remove("completed");
 
- 
+    removeCompletedTodos(x);
   } else {
     completed.classList.add("completed");
 
-   
+    saveCompletedTodos(x);
   }
 }
 
+const getTodos = () => {
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  if (localStorage.getItem("completed") === null) {
+    completedArray = [];
+  } else {
+    completedArray = JSON.parse(localStorage.getItem("completed"));
+  }
+  // console.log(todos);
+  // console.log(completedArray);
+  intersections = todos.filter((e) => completedArray.indexOf(e) !== -1);
+  console.log(intersections);
+  todos.forEach(function (todo) {
+    newTask = document.createElement("li");
 
+    newTask.innerText = todo;
+    newTask.setAttribute("id", idNumber);
+
+    ulList.appendChild(newTask);
+    // console.log(newTask.firstChild.data);
+
+    createToolsArea();
+    idNumber++;
+
+    intersections.forEach((el) => {
+      if (el === newTask.firstChild.data) {
+        newTask.classList.add("completed");
+      }
+    });
+
+    if (todos.length > 0) {
+      alertInfo.innerText = "";
+    }
+  });
+};
+document.addEventListener("DOMContentLoaded", getTodos);

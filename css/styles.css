@@ -154,7 +154,7 @@ body {
 
 .weather .card {
   width: 40%;
-  height: 70%;
+  height: 100%;
   -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
@@ -188,7 +188,7 @@ body {
 .weather .card img {
   width: 80%;
   position: absolute;
-  right: -30%;
+  right: -2%;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
