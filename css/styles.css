@@ -592,4 +592,104 @@ small {
   color: #4f525c;
   text-decoration: line-through;
 }
+
+.theme-night .clock .card-body {
+  background-color: #444;
+  color: white;
+}
+
+.theme-night .sidebar {
+  background-color: #333;
+}
+
+.theme-night .sidebar .opisContain a {
+  color: white;
+}
+
+.theme-night .todo {
+  background-color: #333;
+}
+
+.theme-night .todo .todo-list li {
+  border-radius: 3px;
+}
+
+.theme-night .pogoda span {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.theme-night .top {
+  background-color: #252525;
+}
+
+.theme-night .top .waluta:hover {
+  color: white;
+}
+
+.theme-night .content {
+  background-color: #222;
+}
+
+.theme-night .news .card {
+  background-color: #333;
+}
+
+.theme-night .news .card-title {
+  color: white;
+}
+
+.theme-night .news .card-text {
+  color: #ccc;
+}
+
+.theme-night .search .form-control {
+  background-color: #444;
+  border-color: rgba(187, 187, 187, 0.25);
+  color: #ccc;
+}
+
+.theme-night .search .form-control:focus {
+  border-color: #999;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(187, 187, 187, 0.25);
+          box-shadow: 0 0 0 0.25rem rgba(187, 187, 187, 0.25);
+}
+
+.theme-night .weather .card {
+  background-color: #333;
+  -webkit-box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.theme-night .weather .card .title,
+.theme-night .weather .card span,
+.theme-night .weather .card .temp {
+  color: white;
+}
+
+.theme-night .weather .thunderstorm {
+  background-image: linear-gradient(135deg, #333, #43505e);
+}
+
+.theme-night .weather .drizzle {
+  background-image: linear-gradient(135deg, #333, #244049);
+  color: white;
+}
+
+.theme-night .weather .rain {
+  background-image: linear-gradient(135deg, #333, #3c5c70);
+}
+
+.theme-night .weather .snow {
+  background-image: linear-gradient(135deg, #333, #344852);
+}
+
+.theme-night .weather .clear {
+  background-image: linear-gradient(135deg, #333, #63593e);
+}
+
+.theme-night .weather .clouds {
+  background-image: linear-gradient(135deg, #333, #747474);
+  color: white;
+}
 /*# sourceMappingURL=styles.css.map */
